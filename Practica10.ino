@@ -8,6 +8,7 @@ void loop(){
     int numero = 0;
     if(Serial.available()){
         numero = Serial.parseInt();
+        while(Serial.available()){Serial.read();} //flush extra characters
         recibido=true;
     }
 
@@ -15,11 +16,9 @@ void loop(){
         int numeros[numero];
         int index_final=0;
         for(int i = numero-1; i > 0; i--){
-            int divisores[numero];
             int index = 0;
             for(int j = numero - 1; j>0;j--){
                 if(i%j==0){
-                    divisores[index]=j;
                     index++;
                 }
             }
